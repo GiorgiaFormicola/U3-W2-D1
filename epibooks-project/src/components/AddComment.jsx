@@ -17,8 +17,7 @@ class AddComment extends Component {
     if (prevProps.bookID !== this.props.bookID) {
       this.setState({
         newComment: {
-          comment: "",
-          rate: "1",
+          ...this.state.newComment,
           elementId: this.props.bookID,
         },
       });
@@ -43,11 +42,12 @@ class AddComment extends Component {
                 alert("New comment saved!");
                 this.setState({
                   newComment: {
+                    ...this.state.newComment,
                     comment: "",
                     rate: "1",
-                    elementId: this.props.bookID,
                   },
                 });
+                this.props.getComments();
               } else {
                 throw new Error("Error in adding your comment");
               }

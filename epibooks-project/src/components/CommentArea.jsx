@@ -48,7 +48,7 @@ class CommentArea extends Component {
         {this.props.bookID && (
           <>
             <CommentList commentsArray={this.state.commentsArray}></CommentList>
-            <AddComment bookID={this.props.bookID}></AddComment>
+            <AddComment bookID={this.props.bookID} getComments={this.getComments}></AddComment>
           </>
         )}
       </>

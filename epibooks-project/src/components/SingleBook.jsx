@@ -13,7 +13,7 @@ class SingleBook extends Component {
         <Card
           bg="dark"
           text="light"
-          className={"shadow rounded-4 overflow-hidden border-secondary h-100" + (this.props.selected ? " border-danger border-4" : "")}
+          className={"shadow rounded-4 overflow-hidden border-secondary h-100" + (this.state.selected ? " border-danger border-4" : "")}
         >
           <Card.Img
             variant="top"
@@ -24,6 +24,7 @@ class SingleBook extends Component {
               this.setState({
                 selected: !this.state.selected,
               });
+
               this.props.setSelectedBookID(this.props.book.asin);
             }}
           />

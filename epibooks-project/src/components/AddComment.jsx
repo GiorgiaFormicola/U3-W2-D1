@@ -26,7 +26,7 @@ class AddComment extends Component {
   render() {
     return (
       <Form
-        className="text-center bg-black bg-opacity-50 rounded-2 mt-3"
+        className="text-center bg-black bg-opacity-50 rounded-2 mt-4"
         onSubmit={(e) => {
           e.preventDefault();
           fetch(URL, {

@@ -47,6 +47,7 @@ class CommentArea extends Component {
         {!this.props.bookID && <h4>Select a book to leave a comment or read its reviews!</h4>}
         {this.props.bookID && (
           <>
+            <h4 className="text-light text-center pt-3">{this.props.bookTitle}</h4>
             <CommentList commentsArray={this.state.commentsArray}></CommentList>
             <AddComment bookID={this.props.bookID} getComments={this.getComments}></AddComment>
           </>

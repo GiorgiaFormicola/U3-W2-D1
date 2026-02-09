@@ -10,11 +10,17 @@ class BookList extends Component {
   state = {
     searchValue: "",
     selectedBookID: null,
+    selectedBookTitle: null,
   };
 
-  setSelectedBookID = (selectID) => {
+  setSelectedBookID = (selectedID) => {
     this.setState({
-      selectedBookID: selectID,
+      selectedBookID: selectedID,
+    });
+  };
+  setSelectedBookTitle = (selectedTitle) => {
+    this.setState({
+      selectedBookTitle: selectedTitle,
     });
   };
   render() {
@@ -22,9 +28,9 @@ class BookList extends Component {
       <>
         <Container fluid>
           <Row>
-            <Col xs={7} className="px-4">
+            <Col xs={7} className="ps-5">
               <Row className="justify-content-center">
-                <Col className="col-12 p-0">
+                <Col className="col-12 px-0">
                   <Form>
                     <Form.Control
                       type="text"
@@ -45,16 +51,24 @@ class BookList extends Component {
                     this.props.booksList
                       .filter((b) => b.title.toLowerCase().includes(this.state.searchValue))
                       .map((book) => {
-                        return <SingleBook book={book} key={book.asin} setSelectedBookID={this.setSelectedBookID} selectID={this.state.selectedBookID} />;
+                        return (
+                          <SingleBook
+                            book={book}
+                            key={book.asin}
+                            setSelectedBookID={this.setSelectedBookID}
+                            selectedID={this.state.selectedBookID}
+                            setSelectedBookTitle={this.setSelectedBookTitle}
+                          />
+                        );
                       })
                   )}
                 </Row>
               </Row>
             </Col>
-            <Col xs={5} className="px-4">
-              <h3 className="text-danger text-center border border-1 border-light py-1 rounded-2 mb-3">Reviews</h3>
-              {!this.state.selectedBookID && <p className="text-secondary text-center">Select a book to read its reviews or leave yours!</p>}
-              {this.state.selectedBookID && <CommentArea bookID={this.state.selectedBookID}></CommentArea>}
+            <Col xs={5} className="px-5">
+              <h3 className="text-danger text-center border border-1 border-secondary rounded-2 pb-1">Reviews</h3>
+              {!this.state.selectedBookID && <p className="text-secondary text-center mt-5">Select a book to read its reviews or leave yours!</p>}
+              {this.state.selectedBookID && <CommentArea bookID={this.state.selectedBookID} bookTitle={this.state.selectedBookTitle}></CommentArea>}
             </Col>
           </Row>
         </Container>
